@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MVC_Machine_Test.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<table id="tblCategory" class="table" cellpadding="0" cellspacing="0">
+    <tr>
+        <th style="width:100px">Category Id</th>
+        <th style="width:150px">Category Name</th>
+        <th style="width:150px">Action</th>
+    </tr>
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td class="CategoryId">
+                <span>@category.CategoryId</span>
+            </td>
+            <td class="CategoryName">
+                <span>@category.CategoryName</span>
+                <input type="text" value="@category.CategoryName" style="display:none" />
+            </td>
+            <td>
+                <a class="Edit" href="javascript:;" onclick="EditCategory()">Edit</a>
+                <a class="Update" href="javascript:;" style="display:none" onclick="UpdateCategory(category)">Update</a>
+                <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                <a class="Delete" href="javascript:;">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>       
+        <td style="width: 150px">
+            Category Name:<br />
+            <input type="text" id="txtCategoryName" style="width:140px" />
+        </td>
+        <td style="width: 200px">
+            <br />
+            <input type="button" id="btnAdd" onclick="saveCategory()" class="btn-success" value="Add" />
+        </td>
+    </tr>
+</table>
+
+<script>
+
+
+</script>

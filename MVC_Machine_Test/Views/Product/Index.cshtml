@@ -1,0 +1,76 @@
+﻿@using MVC_Machine_Test.Models;
+@model Tuple<List<Product>, List<Category>>
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+<p><b>Product List</b></p>
+<table id="tblProduct" class="table" cellpadding="0" cellspacing="0">
+    <tr>
+        <th style="width:100px">Id</th>
+        <th style="width:150px">Product</th>
+        <th style="width:150px">Category</th>
+    </tr>
+    @foreach (Product product in Model.Item1)
+    {
+    <tr>
+        <td class="ProductId"> <span>@product.ProductId</span></td>
+        <td class="ProductName"> <span>@product.ProductName</span>
+                                 <input type="text" value="@product.ProductName" style="display:none" />
+        </td>
+        @{
+            foreach (Category category in Model.Item2)
+            {
+                if (category.CategoryId == product.CategoryId)
+                {
+                    <td class="CategoryId"><span class="spacCategory">@category.CategoryName</span>
+        </td>
+
+                }
+            }
+        }
+        <td class="ddlCategory3" style="display:none" >
+            <select class="form-control ddlCategory" >
+                @foreach (Category category in Model.Item2)
+                {
+                    <option value="@category.CategoryId">
+                        @category.CategoryName
+                    </option>
+                }
+            </select>
+        </td>
+        <td>
+            <a class="Edit" href="javascript:;" onclick="">Edit</a>
+            <a class="Update" href="javascript:;" style="display:none" onclick="">Update</a>
+            <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+            <a class="Delete" href="javascript:;">Delete</a>
+        </td>
+
+    </tr>
+    }
+    </table>
+
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>       
+        <td style="width: 150px">
+            Product Name:<br />
+            <input type="text" class="form-control" id="txtProductName" style="width:140px" />
+        </td>
+        <td>
+            <select class="form-control" id="ddlCategoryId">
+                @foreach (Category category in Model.Item2) {
+                    <option value="@category.CategoryId">
+                        @category.CategoryName
+                    </option>
+                }
+            </select>
+        </td>
+        <td style="width: 200px">
+            <br />
+            <input type="button" id="btnAdd" onclick="saveProduct()" value="Add" />
+        </td>
+    </tr>
+</table>
